@@ -11,6 +11,11 @@ Target: 0.24.2 "Operational" — see `kb/roadmap.md`.
 
 ### Security
 
+- CI workflow jobs now declare least-privilege `permissions:` explicitly
+  (workflow-level `contents: read`, plus `pull-requests: read` on the
+  `changes` job for `dorny/paths-filter`) instead of running with the
+  repository's default `GITHUB_TOKEN` scope. Closes the eight CodeQL
+  `actions/missing-workflow-permissions` alerts on `ci.yml`.
 - **Private KBs were readable by any logged-in user, and by anonymous
   visitors on an auth-enabled instance.** Per-KB roles (`default_role: none`,
   explicit grants) were enforced on write routes only; every read route —
